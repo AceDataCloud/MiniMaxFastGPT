@@ -31,7 +31,7 @@ const generateHandler = createToolHandler({
     prompt: z.string().trim().min(1).max(10000).meta({ title: 'Prompt', isToolParam: true } satisfies InputSchemaMetaType),
     model: z.string().trim().min(1).max(256).default('MiniMax-H3').meta({ title: 'Model' } satisfies InputSchemaMetaType),
     resolution: z.string().trim().min(1).max(256).default('768P').meta({ title: 'Resolution' } satisfies InputSchemaMetaType),
-    duration: z.number().int().min(1).max(60).default(4).meta({ title: 'Duration' } satisfies InputSchemaMetaType),
+    duration: z.number().int().min(4).max(15).default(4).meta({ title: 'Duration' } satisfies InputSchemaMetaType),
     ratio: z.string().trim().min(1).max(256).default('16:9').meta({ title: 'Ratio' } satisfies InputSchemaMetaType),
   }),
   outputSchema,
@@ -55,13 +55,13 @@ const retrieveHandler = createToolHandler({
 export default defineToolSet({
   manifest: {
     pluginId: 'acedataMiniMax',
-    version: '0.1.0',
+    version: '0.2.0',
     name: { en: 'Ace Data Cloud MiniMax H3', 'zh-CN': 'Ace Data Cloud MiniMax H3 视频' },
     description: {
       en: 'Generate video with MiniMax H3 through Ace Data Cloud and retrieve the same task.',
       'zh-CN': '通过 Ace Data Cloud MiniMax H3 视频生成并查询同一任务。'
     },
-    versionDescription: { en: 'Initial release', 'zh-CN': '首次发布' },
+    versionDescription: { en: 'Align API limits and task status handling', 'zh-CN': '对齐 API 限制和任务状态处理' },
     author: 'Ace Data Cloud',
     repoUrl: 'https://github.com/AceDataCloud/MiniMaxFastGPT',
     tutorialUrl: 'https://github.com/AceDataCloud/MiniMaxFastGPT#quick-start',
